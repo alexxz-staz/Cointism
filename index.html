@@ -1,0 +1,2032 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CoinTism — The Future of Crypto</title>
+    <meta name="description" content="CoinTism — a modern crypto community and ecosystem.">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --gold: #d4af37;
+            --gold-light: #fff1a8;
+            --gold-bright: #f5d76e;
+            --gold-dark: #9c7c19;
+
+            --black: #030303;
+            --black-light: #090909;
+            --card: #101010;
+
+            --white: #ffffff;
+            --muted: #999999;
+
+            --border: rgba(212, 175, 55, 0.20);
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background:
+                radial-gradient(circle at 50% -10%, rgba(212, 175, 55, 0.16), transparent 35%),
+                radial-gradient(circle at 10% 50%, rgba(212, 175, 55, 0.05), transparent 25%),
+                linear-gradient(180deg, #030303, #070707 50%, #030303);
+            color: var(--white);
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            opacity: 0.18;
+            background-image:
+                radial-gradient(rgba(212, 175, 55, 0.25) 1px, transparent 1px);
+            background-size: 35px 35px;
+            z-index: -1;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        section {
+            padding: 110px 8%;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1250px;
+            margin: auto;
+        }
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 75px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 7%;
+
+            background: rgba(3, 3, 3, 0.78);
+            backdrop-filter: blur(18px);
+
+            border-bottom: 1px solid var(--border);
+
+            z-index: 1000;
+
+            animation: navDrop 0.8s ease forwards;
+        }
+
+        @keyframes navDrop {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            font-size: 22px;
+            font-weight: 900;
+            letter-spacing: 1px;
+        }
+
+        .logo svg {
+            width: 42px;
+            height: 42px;
+
+            filter:
+                drop-shadow(0 0 8px rgba(212, 175, 55, 0.45));
+
+            transition: 0.4s ease;
+        }
+
+        .logo:hover svg {
+            transform: rotate(12deg) scale(1.08);
+        }
+
+        .logo span {
+            background: linear-gradient(
+                90deg,
+                var(--gold-dark),
+                var(--gold-light),
+                var(--gold),
+                var(--gold-light),
+                var(--gold-dark)
+            );
+
+            background-size: 250% auto;
+
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+
+            animation: goldMove 5s linear infinite;
+        }
+
+        @keyframes goldMove {
+            to {
+                background-position: 250% center;
+            }
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: #cfcfcf;
+            font-size: 14px;
+            font-weight: 600;
+            transition: 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -7px;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--gold-light);
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-button {
+            padding: 11px 20px;
+            border-radius: 9px;
+
+            background: linear-gradient(
+                135deg,
+                var(--gold-dark),
+                var(--gold),
+                var(--gold-light)
+            );
+
+            color: #080808 !important;
+            font-weight: 900 !important;
+
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.15);
+
+            transition: 0.3s;
+        }
+
+        .nav-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.35);
+        }
+
+        .menu-btn {
+            display: none;
+
+            background: transparent;
+            border: none;
+
+            color: var(--gold-light);
+            font-size: 30px;
+            cursor: pointer;
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            min-height: 100vh;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+
+            padding-top: 130px;
+
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+
+            width: 650px;
+            height: 650px;
+
+            background: rgba(212, 175, 55, 0.10);
+            filter: blur(130px);
+            border-radius: 50%;
+
+            animation: heroPulse 5s ease-in-out infinite;
+        }
+
+        @keyframes heroPulse {
+            0%, 100% {
+                transform: scale(0.9);
+                opacity: 0.5;
+            }
+
+            50% {
+                transform: scale(1.15);
+                opacity: 0.8;
+            }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 950px;
+        }
+
+        .badge {
+            display: inline-block;
+
+            padding: 8px 17px;
+            margin-bottom: 25px;
+
+            border: 1px solid var(--border);
+            border-radius: 50px;
+
+            background: rgba(212, 175, 55, 0.06);
+
+            color: var(--gold-light);
+
+            font-size: 13px;
+            font-weight: 700;
+
+            animation: floatBadge 3s ease-in-out infinite;
+        }
+
+        @keyframes floatBadge {
+            0%, 100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-7px);
+            }
+        }
+
+        .hero h1 {
+            font-size: clamp(55px, 9vw, 105px);
+            line-height: 0.95;
+            font-weight: 1000;
+            letter-spacing: -5px;
+
+            background: linear-gradient(
+                90deg,
+                var(--gold-dark),
+                var(--gold-light),
+                var(--gold-bright),
+                var(--gold-light),
+                var(--gold-dark)
+            );
+
+            background-size: 300% auto;
+
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+
+            animation:
+                goldMove 6s linear infinite,
+                heroTitle 1s ease forwards;
+        }
+
+        @keyframes heroTitle {
+            from {
+                opacity: 0;
+                transform: translateY(35px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero p {
+            max-width: 700px;
+            margin: 30px auto;
+
+            color: var(--muted);
+            font-size: 18px;
+            line-height: 1.7;
+
+            animation: fadeUp 1s ease 0.2s both;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+
+            animation: fadeUp 1s ease 0.4s both;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 15px 27px;
+
+            border-radius: 10px;
+
+            font-weight: 800;
+            font-size: 14px;
+
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: linear-gradient(
+                135deg,
+                var(--gold-dark),
+                var(--gold),
+                var(--gold-light)
+            );
+
+            color: #050505;
+
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.18);
+        }
+
+        .btn-primary::before {
+            content: "";
+
+            position: absolute;
+            top: 0;
+            left: -120%;
+
+            width: 70%;
+            height: 100%;
+
+            background: rgba(255,255,255,0.4);
+
+            transform: skewX(-25deg);
+
+            transition: 0.6s;
+        }
+
+        .btn-primary:hover::before {
+            left: 140%;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 0 40px rgba(212, 175, 55, 0.35);
+        }
+
+        .btn-secondary {
+            border: 1px solid var(--border);
+            background: rgba(255,255,255,0.02);
+            color: var(--gold-light);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(212, 175, 55, 0.08);
+            border-color: var(--gold);
+            transform: translateY(-4px);
+        }
+
+        /* =========================
+           STATS
+        ========================= */
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+
+            max-width: 1000px;
+            margin: 60px auto 0;
+        }
+
+        .stat {
+            padding: 28px;
+
+            border: 1px solid var(--border);
+            border-radius: 15px;
+
+            background: rgba(255,255,255,0.025);
+
+            transition: 0.35s;
+        }
+
+        .stat:hover {
+            transform: translateY(-8px);
+            border-color: rgba(212,175,55,0.5);
+            box-shadow: 0 15px 45px rgba(0,0,0,0.35);
+        }
+
+        .stat h3 {
+            color: var(--gold-light);
+            font-size: 28px;
+            margin-bottom: 7px;
+        }
+
+        .stat p {
+            margin: 0;
+            font-size: 13px;
+        }
+
+        /* =========================
+           SECTION TITLES
+        ========================= */
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title span {
+            color: var(--gold);
+            font-size: 13px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .section-title h2 {
+            margin-top: 12px;
+
+            font-size: clamp(35px, 5vw, 55px);
+
+            background: linear-gradient(
+                90deg,
+                var(--white),
+                var(--gold-light)
+            );
+
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-title p {
+            max-width: 650px;
+            margin: 15px auto 0;
+
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        /* =========================
+           ABOUT
+        ========================= */
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 70px;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-size: 35px;
+            margin-bottom: 20px;
+        }
+
+        .about-text h3 span {
+            color: var(--gold);
+        }
+
+        .about-text p {
+            color: var(--muted);
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .coin-display {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .big-coin {
+            width: 300px;
+            height: 300px;
+
+            border-radius: 50%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background:
+                radial-gradient(circle at 35% 30%,
+                    var(--gold-light),
+                    var(--gold) 35%,
+                    var(--gold-dark) 70%,
+                    #5f490d
+                );
+
+            border: 7px solid rgba(255,255,255,0.12);
+
+            box-shadow:
+                0 0 45px rgba(212,175,55,0.3),
+                inset 0 0 40px rgba(0,0,0,0.3);
+
+            animation: coinFloat 4s ease-in-out infinite;
+        }
+
+        @keyframes coinFloat {
+            0%, 100% {
+                transform: translateY(0) rotate(-3deg);
+            }
+
+            50% {
+                transform: translateY(-18px) rotate(3deg);
+            }
+        }
+
+        .big-coin span {
+            color: #080808;
+            font-size: 110px;
+            font-weight: 1000;
+        }
+
+        /* =========================
+           FEATURES
+        ========================= */
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .feature-card {
+            padding: 35px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(212,175,55,0.07),
+                    rgba(255,255,255,0.02)
+                );
+
+            border: 1px solid var(--border);
+            border-radius: 17px;
+
+            transition: 0.4s;
+
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: "";
+
+            position: absolute;
+            width: 150px;
+            height: 150px;
+
+            top: -80px;
+            right: -80px;
+
+            border-radius: 50%;
+
+            background: rgba(212,175,55,0.08);
+            filter: blur(20px);
+
+            transition: 0.4s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(212,175,55,0.5);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+        }
+
+        .feature-card:hover::before {
+            transform: scale(2);
+        }
+
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            margin-bottom: 25px;
+
+            border-radius: 12px;
+
+            background: rgba(212,175,55,0.1);
+
+            color: var(--gold-light);
+            font-size: 23px;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 12px;
+            font-size: 20px;
+        }
+
+        .feature-card p {
+            color: var(--muted);
+            line-height: 1.7;
+            font-size: 14px;
+        }
+
+        /* =========================
+           TOKENOMICS
+        ========================= */
+
+        .tokenomics {
+            background:
+                radial-gradient(
+                    circle at center,
+                    rgba(212,175,55,0.06),
+                    transparent 50%
+                );
+        }
+
+        .token-box {
+            max-width: 1000px;
+            margin: auto;
+
+            padding: 40px;
+
+            background: rgba(255,255,255,0.025);
+
+            border: 1px solid var(--border);
+            border-radius: 20px;
+
+            box-shadow: 0 20px 80px rgba(0,0,0,0.3);
+        }
+
+        .token-info {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            margin-bottom: 40px;
+        }
+
+        .token-item {
+            padding: 20px;
+
+            border-radius: 12px;
+            background: rgba(0,0,0,0.25);
+
+            border: 1px solid rgba(212,175,55,0.12);
+        }
+
+        .token-item small {
+            display: block;
+            color: #777;
+            margin-bottom: 8px;
+        }
+
+        .token-item strong {
+            color: var(--gold-light);
+        }
+
+        .allocation {
+            margin-top: 25px;
+        }
+
+        .allocation-row {
+            margin-bottom: 25px;
+        }
+
+        .allocation-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 9px;
+
+            font-size: 14px;
+        }
+
+        .allocation-header span:last-child {
+            color: var(--gold-light);
+            font-weight: 800;
+        }
+
+        .bar {
+            width: 100%;
+            height: 9px;
+
+            border-radius: 20px;
+            overflow: hidden;
+
+            background: #191919;
+        }
+
+        .bar-fill {
+            height: 100%;
+            width: 0;
+
+            border-radius: inherit;
+
+            background: linear-gradient(
+                90deg,
+                var(--gold-dark),
+                var(--gold-light)
+            );
+
+            animation: barGrow 1.5s ease forwards;
+        }
+
+        .community-bar {
+            animation-delay: 0.2s;
+            width: 40%;
+        }
+
+        .liquidity-bar {
+            animation-delay: 0.35s;
+            width: 25%;
+        }
+
+        .development-bar {
+            animation-delay: 0.5s;
+            width: 20%;
+        }
+
+        .marketing-bar {
+            animation-delay: 0.65s;
+            width: 10%;
+        }
+
+        .reserve-bar {
+            animation-delay: 0.8s;
+            width: 5%;
+        }
+
+        @keyframes barGrow {
+            from {
+                width: 0;
+            }
+        }
+
+        .token-note {
+            margin-top: 30px;
+            padding: 15px;
+
+            border-left: 3px solid var(--gold);
+
+            background: rgba(212,175,55,0.05);
+
+            color: #aaa;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        /* =========================
+           ROADMAP
+        ========================= */
+
+        .roadmap {
+            max-width: 850px;
+            margin: auto;
+            position: relative;
+        }
+
+        .roadmap::before {
+            content: "";
+
+            position: absolute;
+
+            left: 50%;
+            top: 0;
+            bottom: 0;
+
+            width: 2px;
+
+            background: linear-gradient(
+                var(--gold-dark),
+                var(--gold-light),
+                var(--gold-dark)
+            );
+
+            transform: translateX(-50%);
+        }
+
+        .roadmap-item {
+            width: 50%;
+            padding: 20px 40px;
+
+            position: relative;
+        }
+
+        .roadmap-item:nth-child(even) {
+            margin-left: 50%;
+        }
+
+        .roadmap-dot {
+            position: absolute;
+
+            width: 15px;
+            height: 15px;
+
+            top: 28px;
+
+            border-radius: 50%;
+
+            background: var(--gold-light);
+
+            box-shadow:
+                0 0 15px rgba(212,175,55,0.7);
+        }
+
+        .roadmap-item:nth-child(odd) .roadmap-dot {
+            right: -7px;
+        }
+
+        .roadmap-item:nth-child(even) .roadmap-dot {
+            left: -7px;
+        }
+
+        .roadmap-card {
+            padding: 25px;
+
+            border: 1px solid var(--border);
+            border-radius: 15px;
+
+            background: rgba(255,255,255,0.025);
+
+            transition: 0.35s;
+        }
+
+        .roadmap-card:hover {
+            transform: scale(1.03);
+            border-color: rgba(212,175,55,0.45);
+        }
+
+        .roadmap-card span {
+            color: var(--gold);
+            font-size: 12px;
+            font-weight: 900;
+        }
+
+        .roadmap-card h3 {
+            margin: 8px 0;
+        }
+
+        .roadmap-card p {
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* =========================
+           FAQ
+        ========================= */
+
+        .faq {
+            max-width: 850px;
+            margin: auto;
+        }
+
+        details {
+            margin-bottom: 15px;
+
+            padding: 20px 23px;
+
+            background: rgba(255,255,255,0.025);
+
+            border: 1px solid var(--border);
+            border-radius: 12px;
+
+            transition: 0.3s;
+        }
+
+        details:hover {
+            border-color: rgba(212,175,55,0.4);
+        }
+
+        summary {
+            cursor: pointer;
+
+            font-weight: 800;
+            color: var(--gold-light);
+
+            list-style: none;
+        }
+
+        summary::-webkit-details-marker {
+            display: none;
+        }
+
+        summary::after {
+            content: "+";
+            float: right;
+            color: var(--gold);
+            font-size: 20px;
+        }
+
+        details[open] summary::after {
+            content: "−";
+        }
+
+        details p {
+            color: var(--muted);
+            line-height: 1.7;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        /* =========================
+           COMMUNITY
+        ========================= */
+
+        .community-box {
+            max-width: 1000px;
+            margin: auto;
+
+            text-align: center;
+
+            padding: 80px 30px;
+
+            border: 1px solid var(--border);
+            border-radius: 25px;
+
+            background:
+                radial-gradient(
+                    circle at center,
+                    rgba(212,175,55,0.11),
+                    rgba(255,255,255,0.02)
+                );
+
+            transition: 0.4s;
+        }
+
+        .community-box:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 25px 80px rgba(212,175,55,0.08);
+        }
+
+        .community-box h2 {
+            font-size: clamp(35px, 6vw, 60px);
+            margin-bottom: 18px;
+        }
+
+        .community-box p {
+            max-width: 650px;
+            margin: 0 auto 30px;
+
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            padding: 40px 8%;
+
+            border-top: 1px solid var(--border);
+
+            background: #020202;
+
+            text-align: center;
+
+            color: #666;
+            font-size: 13px;
+        }
+
+        footer strong {
+            color: var(--gold);
+        }
+
+        /* =========================
+           SCROLL ANIMATION
+        ========================= */
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(35px);
+            transition: 0.8s ease;
+        }
+
+        .reveal.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 900px) {
+
+            .nav-links {
+                position: absolute;
+
+                top: 75px;
+                left: 0;
+
+                width: 100%;
+
+                display: none;
+                flex-direction: column;
+
+                padding: 25px;
+
+                background: rgba(3,3,3,0.97);
+
+                border-bottom: 1px solid var(--border);
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .menu-btn {
+                display: block;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .token-info {
+                grid-template-columns: 1fr;
+            }
+
+            .roadmap::before {
+                left: 15px;
+            }
+
+            .roadmap-item,
+            .roadmap-item:nth-child(even) {
+                width: 100%;
+                margin-left: 0;
+                padding-left: 50px;
+            }
+
+            .roadmap-item:nth-child(odd) .roadmap-dot,
+            .roadmap-item:nth-child(even) .roadmap-dot {
+                left: 8px;
+                right: auto;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            section {
+                padding: 85px 6%;
+            }
+
+            .hero {
+                padding-top: 120px;
+            }
+
+            .hero h1 {
+                letter-spacing: -3px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .token-box {
+                padding: 25px;
+            }
+
+            .big-coin {
+                width: 230px;
+                height: 230px;
+            }
+
+            .big-coin span {
+                font-size: 80px;
+            }
+
+            .community-box {
+                padding: 55px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =========================
+         NAVBAR
+    ========================== -->
+
+    <nav>
+
+        <a href="#home" class="logo">
+
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+
+                <circle
+                    cx="50"
+                    cy="50"
+                    r="45"
+                    fill="#080808"
+                    stroke="#d4af37"
+                    stroke-width="5"
+                />
+
+                <circle
+                    cx="50"
+                    cy="50"
+                    r="34"
+                    fill="none"
+                    stroke="#f5d76e"
+                    stroke-width="3"
+                />
+
+                <path
+                    d="M62 29
+                       C54 23 43 23 35 29
+                       C27 35 24 44 26 53
+                       C28 63 37 70 47 71
+                       C55 72 62 68 67 62"
+                    fill="none"
+                    stroke="#f5d76e"
+                    stroke-width="7"
+                    stroke-linecap="round"
+                />
+
+                <path
+                    d="M49 39
+                       L70 39
+                       M59.5 39
+                       L59.5 68"
+                    fill="none"
+                    stroke="#d4af37"
+                    stroke-width="6"
+                    stroke-linecap="round"
+                />
+
+            </svg>
+
+            <span>CoinTism</span>
+
+        </a>
+
+        <div class="nav-links" id="navLinks">
+
+            <a href="#home" class="active">Home</a>
+            <a href="#about">About</a>
+            <a href="#features">Features</a>
+            <a href="#tokenomics">Tokenomics</a>
+            <a href="#roadmap">Roadmap</a>
+            <a href="#faq">FAQ</a>
+
+            <a
+                href="https://discord.gg/ZahhA9Eah"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="nav-button"
+            >
+                Join Us
+            </a>
+
+        </div>
+
+        <button class="menu-btn" id="menuBtn">
+            ☰
+        </button>
+
+    </nav>
+
+
+    <!-- =========================
+         HERO
+    ========================== -->
+
+    <section class="hero" id="home">
+
+        <div class="hero-content">
+
+            <div class="badge">
+                ✦ Welcome to CoinTism
+            </div>
+
+            <h1>
+                THE FUTURE<br>
+                OF CRYPTO
+            </h1>
+
+            <p>
+                CoinTism is building a modern crypto-focused ecosystem
+                designed around community, technology and innovation.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a
+                    href="https://discord.gg/ZahhA9Eah"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="btn btn-primary"
+                >
+                    Join Us Now
+                </a>
+
+                <a href="#tokenomics" class="btn btn-secondary">
+                    Explore Tokenomics
+                </a>
+
+            </div>
+
+            <div class="stats">
+
+                <div class="stat">
+                    <h3>1B</h3>
+                    <p>Total Supply</p>
+                </div>
+
+                <div class="stat">
+                    <h3>CTM</h3>
+                    <p>Token Symbol</p>
+                </div>
+
+                <div class="stat">
+                    <h3>TBA</h3>
+                    <p>Blockchain</p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         ABOUT
+    ========================== -->
+
+    <section id="about">
+
+        <div class="container">
+
+            <div class="section-title reveal">
+                <span>About CoinTism</span>
+
+                <h2>Built For The Future</h2>
+
+                <p>
+                    A community-driven concept focused on creating
+                    a recognizable and modern crypto ecosystem.
+                </p>
+            </div>
+
+            <div class="about-grid">
+
+                <div class="about-text reveal">
+
+                    <h3>
+                        More Than Just A <span>Token.</span>
+                    </h3>
+
+                    <p>
+                        CoinTism is designed to bring together community,
+                        technology and digital innovation in one ecosystem.
+                    </p>
+
+                    <p>
+                        Our goal is to create a strong identity, transparent
+                        development and a community that can grow together.
+                    </p>
+
+                    <a
+                        href="https://discord.gg/ZahhA9Eah"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="btn btn-primary"
+                    >
+                        Join CoinTism
+                    </a>
+
+                </div>
+
+                <div class="coin-display reveal">
+
+                    <div class="big-coin">
+                        <span>CT</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         FEATURES
+    ========================== -->
+
+    <section id="features">
+
+        <div class="container">
+
+            <div class="section-title reveal">
+
+                <span>Ecosystem</span>
+
+                <h2>Why CoinTism?</h2>
+
+                <p>
+                    A simple vision with a strong focus on community
+                    and future development.
+                </p>
+
+            </div>
+
+            <div class="features-grid">
+
+                <div class="feature-card reveal">
+
+                    <div class="feature-icon">
+                        ◆
+                    </div>
+
+                    <h3>Community First</h3>
+
+                    <p>
+                        CoinTism puts its community at the center
+                        of the ecosystem.
+                    </p>
+
+                </div>
+
+                <div class="feature-card reveal">
+
+                    <div class="feature-icon">
+                        ⚡
+                    </div>
+
+                    <h3>Modern Technology</h3>
+
+                    <p>
+                        Designed with modern digital infrastructure
+                        and future development in mind.
+                    </p>
+
+                </div>
+
+                <div class="feature-card reveal">
+
+                    <div class="feature-icon">
+                        ◈
+                    </div>
+
+                    <h3>Transparency</h3>
+
+                    <p>
+                        Clear information about the project,
+                        tokenomics and future plans.
+                    </p>
+
+                </div>
+
+                <div class="feature-card reveal">
+
+                    <div class="feature-icon">
+                        ✦
+                    </div>
+
+                    <h3>Strong Identity</h3>
+
+                    <p>
+                        A recognizable black and gold identity
+                        built around CoinTism.
+                    </p>
+
+                </div>
+
+                <div class="feature-card reveal">
+
+                    <div class="feature-icon">
+                        ◎
+                    </div>
+
+                    <h3>Growing Ecosystem</h3>
+
+                    <p>
+                        Future features can expand the CoinTism
+                        ecosystem over time.
+                    </p>
+
+                </div>
+
+                <div class="feature-card reveal">
+
+                    <div class="feature-icon">
+                        🚀
+                    </div>
+
+                    <h3>Future Focused</h3>
+
+                    <p>
+                        Built with a long-term vision for digital
+                        communities and technology.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         TOKENOMICS
+    ========================== -->
+
+    <section id="tokenomics" class="tokenomics">
+
+        <div class="container">
+
+            <div class="section-title reveal">
+
+                <span>Tokenomics</span>
+
+                <h2>CTM Token</h2>
+
+                <p>
+                    Example token structure for the CoinTism ecosystem.
+                    Replace these values with the official project values
+                    before publishing.
+                </p>
+
+            </div>
+
+            <div class="token-box reveal">
+
+                <div class="token-info">
+
+                    <div class="token-item">
+                        <small>Token Name</small>
+                        <strong>CoinTism</strong>
+                    </div>
+
+                    <div class="token-item">
+                        <small>Symbol</small>
+                        <strong>CTM</strong>
+                    </div>
+
+                    <div class="token-item">
+                        <small>Total Supply</small>
+                        <strong>1,000,000,000</strong>
+                    </div>
+
+                    <div class="token-item">
+                        <small>Blockchain</small>
+                        <strong>TBA</strong>
+                    </div>
+
+                    <div class="token-item">
+                        <small>Contract</small>
+                        <strong>TBA</strong>
+                    </div>
+
+                    <div class="token-item">
+                        <small>Launch</small>
+                        <strong>TBA</strong>
+                    </div>
+
+                </div>
+
+                <div class="allocation">
+
+                    <div class="allocation-row">
+
+                        <div class="allocation-header">
+                            <span>Community</span>
+                            <span>40%</span>
+                        </div>
+
+                        <div class="bar">
+                            <div class="bar-fill community-bar"></div>
+                        </div>
+
+                    </div>
+
+                    <div class="allocation-row">
+
+                        <div class="allocation-header">
+                            <span>Liquidity</span>
+                            <span>25%</span>
+                        </div>
+
+                        <div class="bar">
+                            <div class="bar-fill liquidity-bar"></div>
+                        </div>
+
+                    </div>
+
+                    <div class="allocation-row">
+
+                        <div class="allocation-header">
+                            <span>Development</span>
+                            <span>20%</span>
+                        </div>
+
+                        <div class="bar">
+                            <div class="bar-fill development-bar"></div>
+                        </div>
+
+                    </div>
+
+                    <div class="allocation-row">
+
+                        <div class="allocation-header">
+                            <span>Marketing</span>
+                            <span>10%</span>
+                        </div>
+
+                        <div class="bar">
+                            <div class="bar-fill marketing-bar"></div>
+                        </div>
+
+                    </div>
+
+                    <div class="allocation-row">
+
+                        <div class="allocation-header">
+                            <span>Reserve</span>
+                            <span>5%</span>
+                        </div>
+
+                        <div class="bar">
+                            <div class="bar-fill reserve-bar"></div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="token-note">
+                    ⚠ These tokenomics are placeholders for the website design.
+                    Replace the supply, allocations, blockchain and contract
+                    information with the actual CoinTism details before launch.
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         ROADMAP
+    ========================== -->
+
+    <section id="roadmap">
+
+        <div class="container">
+
+            <div class="section-title reveal">
+
+                <span>Roadmap</span>
+
+                <h2>The CoinTism Journey</h2>
+
+                <p>
+                    A simple example roadmap for the project's development.
+                </p>
+
+            </div>
+
+            <div class="roadmap">
+
+                <div class="roadmap-item reveal">
+
+                    <div class="roadmap-dot"></div>
+
+                    <div class="roadmap-card">
+
+                        <span>PHASE 01</span>
+
+                        <h3>Foundation</h3>
+
+                        <p>
+                            Build the CoinTism identity, website,
+                            community and initial project infrastructure.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="roadmap-item reveal">
+
+                    <div class="roadmap-dot"></div>
+
+                    <div class="roadmap-card">
+
+                        <span>PHASE 02</span>
+
+                        <h3>Community Growth</h3>
+
+                        <p>
+                            Grow the community, introduce new channels
+                            and establish the CoinTism ecosystem.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="roadmap-item reveal">
+
+                    <div class="roadmap-dot"></div>
+
+                    <div class="roadmap-card">
+
+                        <span>PHASE 03</span>
+
+                        <h3>Development</h3>
+
+                        <p>
+                            Develop additional CoinTism features,
+                            tools and ecosystem integrations.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="roadmap-item reveal">
+
+                    <div class="roadmap-dot"></div>
+
+                    <div class="roadmap-card">
+
+                        <span>PHASE 04</span>
+
+                        <h3>Expansion</h3>
+
+                        <p>
+                            Expand the ecosystem and introduce
+                            new long-term community initiatives.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         FAQ
+    ========================== -->
+
+    <section id="faq">
+
+        <div class="container">
+
+            <div class="section-title reveal">
+
+                <span>FAQ</span>
+
+                <h2>Frequently Asked Questions</h2>
+
+            </div>
+
+            <div class="faq">
+
+                <details class="reveal">
+
+                    <summary>What is CoinTism?</summary>
+
+                    <p>
+                        CoinTism is a crypto-focused project concept
+                        built around community, technology and digital innovation.
+                    </p>
+
+                </details>
+
+
+                <details class="reveal">
+
+                    <summary>What is the CTM token?</summary>
+
+                    <p>
+                        CTM is the planned token symbol for CoinTism.
+                        Official blockchain and contract information is currently TBA.
+                    </p>
+
+                </details>
+
+
+                <details class="reveal">
+
+                    <summary>Where can I join the community?</summary>
+
+                    <p>
+                        You can join the official CoinTism Discord community
+                        using the Join Us buttons on this website.
+                    </p>
+
+                </details>
+
+
+                <details class="reveal">
+
+                    <summary>When will CoinTism launch?</summary>
+
+                    <p>
+                        The official launch date has not been announced yet.
+                        Follow the community for future announcements.
+                    </p>
+
+                </details>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         COMMUNITY
+    ========================== -->
+
+    <section id="community">
+
+        <div class="container">
+
+            <div class="community-box reveal">
+
+                <h2>
+                    JOIN THE <span style="color: var(--gold);">COMMUNITY</span>
+                </h2>
+
+                <p>
+                    Be part of the CoinTism community and stay updated
+                    with future announcements, development and events.
+                </p>
+
+                <a
+                    href="https://discord.gg/ZahhA9Eah"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="btn btn-primary"
+                >
+                    Join Discord
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer>
+
+        <p>
+            © 2026 <strong>CoinTism</strong>. All rights reserved.
+        </p>
+
+        <p style="margin-top: 8px;">
+            CoinTism is a project concept. Nothing on this website
+            constitutes financial advice or a promise of returns.
+        </p>
+
+    </footer>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
+    <script>
+
+        /* =========================
+           MOBILE MENU
+        ========================== */
+
+        const menuBtn = document.getElementById("menuBtn");
+        const navLinks = document.getElementById("navLinks");
+
+        menuBtn.addEventListener("click", () => {
+
+            navLinks.classList.toggle("open");
+
+            if (navLinks.classList.contains("open")) {
+                menuBtn.textContent = "✕";
+            } else {
+                menuBtn.textContent = "☰";
+            }
+
+        });
+
+
+        /* Close mobile menu after clicking a link */
+
+        document.querySelectorAll(".nav-links a").forEach(link => {
+
+            link.addEventListener("click", () => {
+
+                navLinks.classList.remove("open");
+                menuBtn.textContent = "☰";
+
+            });
+
+        });
+
+
+        /* =========================
+           SCROLL REVEAL
+        ========================== */
+
+        const revealElements =
+            document.querySelectorAll(".reveal");
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+
+                entries.forEach(entry => {
+
+                    if (entry.isIntersecting) {
+
+                        entry.target.classList.add("show");
+
+                    }
+
+                });
+
+            },
+            {
+                threshold: 0.12
+            }
+        );
+
+        revealElements.forEach(element => {
+            observer.observe(element);
+        });
+
+
+        /* =========================
+           ACTIVE NAV LINK
+        ========================== */
+
+        const sections =
+            document.querySelectorAll("section[id]");
+
+        const navItems =
+            document.querySelectorAll(".nav-links a[href^='#']");
+
+        window.addEventListener("scroll", () => {
+
+            let current = "";
+
+            sections.forEach(section => {
+
+                const sectionTop =
+                    section.offsetTop - 130;
+
+                if (window.scrollY >= sectionTop) {
+                    current = section.getAttribute("id");
+                }
+
+            });
+
+            navItems.forEach(link => {
+
+                link.classList.remove("active");
+
+                if (
+                    link.getAttribute("href") === "#" + current
+                ) {
+                    link.classList.add("active");
+                }
+
+            });
+
+        });
+
+
+        /* =========================
+           TOKEN BAR ANIMATION
+        ========================== */
+
+        const tokenSection =
+            document.getElementById("tokenomics");
+
+        const tokenObserver =
+            new IntersectionObserver(
+                entries => {
+
+                    if (entries[0].isIntersecting) {
+
+                        document
+                            .querySelector(".community-bar")
+                            .style.width = "40%";
+
+                        document
+                            .querySelector(".liquidity-bar")
+                            .style.width = "25%";
+
+                        document
+                            .querySelector(".development-bar")
+                            .style.width = "20%";
+
+                        document
+                            .querySelector(".marketing-bar")
+                            .style.width = "10%";
+
+                        document
+                            .querySelector(".reserve-bar")
+                            .style.width = "5%";
+
+                    }
+
+                },
+                {
+                    threshold: 0.25
+                }
+            );
+
+        tokenObserver.observe(tokenSection);
+
+    </script>
+
+</body>
+</html>
